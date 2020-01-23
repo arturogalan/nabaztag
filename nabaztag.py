@@ -1,5 +1,6 @@
-
+import sys
 import nabaztagActions
+import recognizerActionsGoogle
 import time
 
 def main():
@@ -7,10 +8,13 @@ def main():
     # nabaztagActions.sayWoman("eh niño... que haces, quieres jugar?. No te voy a hacer daño")
     # nabaztagActions.earsSad()
     # nabaztagActions.earsUp()
-    nabaztagActions.earsPayAttention()
-    time.sleep(1)
-    nabaztagActions.earsActionDone()
-    nabaztagActions.whisper("eh niño... que haces, quieres jugar?. No te voy a hacer daño")
+
+    # nabaztagActions.earsPayAttention()
+    # time.sleep(1)
+    # nabaztagActions.earsActionDone()
+    # nabaztagActions.whisper("eh niño... que haces, quieres jugar?. No te voy a hacer daño")
+    nabaztagActions.earsUp()
+    recognizerActionsGoogle.startRecognizer()
     # nabaztagActions.earsSad()
 if __name__ == '__main__':
     main()

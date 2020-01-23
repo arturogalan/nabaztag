@@ -31,7 +31,6 @@ from aiy.assistant.library import Assistant
 import aiy.audio
 import aiy.voicehat
 from google.assistant.library.event import EventType
-import snowboydecoder
 
 import vlc
 global vlc_volume
@@ -44,7 +43,7 @@ logging.basicConfig(
 
 
 def power_off_pi():
-    aiy.audio.say('Good bye!') 
+    aiy.audio.say('Good bye!')
     subprocess.call('sudo shutdown now', shell=True)
 
 
