@@ -3,11 +3,9 @@ sys.path.append('snowboy/')
 import snowboydecoder
 import signal
 from aiy.audio import play_wave
-import aiy.cloudspeech
 import os
-import aiy.assistant.auth_helpers
-from aiy.assistant.library import Assistant
 import nabaztagActions
+from wit import Wit
 
 recognizer = aiy.cloudspeech.get_recognizer()
 interrupted = False
@@ -28,23 +26,18 @@ if len(sys.argv) == 1:
     print("Error: need to specify model name")
     print("Usage: python demo.py your.model")
     sys.exit(-1)
-
+if len(sys.argv) != 3:
+    print('usage: python ' + sys.argv[0] + ' <wit-token>')
+    exit(1)
 
 
 def wit_speech_to_text():
+    access_token = sys.argv[2]
     nabaztagActions.earsPayAttention()
-    global recognizer
     print('Listening command...')
     listening = True
-    while listening:
-        text = recognizer.recognize()
-        nabaztagActions.earsActionDone()
-        if not text:
-            print('Sorry, I did not hear you.')
-        else:
-            print('You said "', text, '"')
-            action_echo(text)
-            listening = False
+    client = Wit(access_token=access_token)
+    client.interactive(handle_message=handle_message)
 
 def action_echo(textToSay):
     nabaztagActions.sayMan(textToSay)
@@ -67,3 +60,10 @@ def startRecognizer():
                 interrupt_check=interrupt_callback,
                 sleep_time=0.03)
     detector.terminate()
+
+def handle_message(response):
+    print(response['entities'])
+    print(response)
+
+
+

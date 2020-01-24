@@ -1,6 +1,7 @@
 import sys
 import nabaztagActions
 import recognizerActionsGoogle
+import recognizerActionsWit
 import time
 
 def main():
@@ -14,7 +15,9 @@ def main():
     # nabaztagActions.earsActionDone()
     # nabaztagActions.whisper("eh niño... que haces, quieres jugar?. No te voy a hacer daño")
     nabaztagActions.earsUp()
-    recognizerActionsGoogle.startRecognizer()
+    # recognizerActionsGoogle.startRecognizer()
+    recognizerActionsWit.startRecognizer()
+
     # nabaztagActions.earsSad()
 if __name__ == '__main__':
     main()
